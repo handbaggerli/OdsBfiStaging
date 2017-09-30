@@ -1,0 +1,11 @@
+drop table t_ods_generate_tables purge;
+
+create table t_ods_generate_tables
+(
+  ods_tables_id   raw (16) not null primary key
+, table_name      varchar2 (30) not null
+, column_id       number not null
+, column_name     varchar2 (30) not null
+, data_type       varchar2 (30)
+, column_used     varchar2 (1)
+);

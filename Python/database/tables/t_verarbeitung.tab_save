@@ -1,0 +1,25 @@
+drop table t_verarbeitung purge;
+
+create table t_verarbeitung
+(
+  verarbeitung_id   raw (16) not null
+, entry_date_von    timestamp (9) not null
+, entry_date_bis    timestamp (9) not null
+, aktueller_scn     number not null
+, ladetyp           varchar2 (10) not null
+, startzeit         timestamp not null
+, endzeit           timestamp
+);
+
+begin
+  pck_warte_constraint_info.prc_define_delete ('t_verarbeitung');
+  pck_warte_constraint_info.prc_define_primary_key (p_table => 't_verarbeitung', p_column => 'verarbeitung_id');
+  pck_warte_constraint_info.prc_define_index (p_table => 't_verarbeitung', p_column => 'entry_date_von', p_index_type => pck_warte_constraint_info.c_index_type_uix);
+  pck_warte_constraint_info.prc_define_index (p_table => 't_verarbeitung', p_column => 'entry_date_bis', p_index_type => pck_warte_constraint_info.c_index_type_uix);
+end;
+/
+
+begin
+  pck_warte_constraint_info.prc_create_all ('t_verarbeitung');
+end;
+/

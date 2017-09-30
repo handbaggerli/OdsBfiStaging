@@ -1,0 +1,34 @@
+drop table t_steuerung purge;
+
+create table t_steuerung
+(
+  steuerung_id         raw (16) not null
+, table_name           varchar2 (30) not null
+, schritt_nr           number    not null
+, table_ladetyp        varchar2 (10) not null
+, table_ladetyp_next   varchar2 (10) not null
+, pruefen              varchar2 (10) not null
+, kommand              varchar2 (60) not null
+, startzeit            timestamp
+, endzeit              timestamp
+, anz_rows_stg         number
+, sum_keys_stg         number
+, anz_rows_lokal       number
+, sum_keys_lokal       number
+, rows_last_analyzed   number
+, status               varchar2 (10)
+);
+
+begin
+  pck_warte_constraint_info.prc_define_delete ('t_steuerung');
+  pck_warte_constraint_info.prc_define_primary_key (p_table => 't_steuerung', p_column => 'steuerung_id');
+  pck_warte_constraint_info.prc_define_index (p_table => 't_steuerung', p_column => 'table_name', p_index_type => pck_warte_constraint_info.c_index_type_uix);
+  pck_warte_constraint_info.prc_define_index (p_table => 't_steuerung', p_column => 'schritt_nr', p_index_type => pck_warte_constraint_info.c_index_type_uix);
+  pck_warte_constraint_info.prc_define_index (p_table => 't_steuerung', p_column => 'kommand', p_index_type => pck_warte_constraint_info.c_index_type_uix);
+end;
+/
+
+begin
+  pck_warte_constraint_info.prc_create_all ('t_steuerung');
+end;
+/

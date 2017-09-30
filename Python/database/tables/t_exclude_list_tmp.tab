@@ -1,0 +1,7 @@
+drop table t_exclude_list_tmp purge;
+
+create table t_exclude_list_tmp
+(
+  table_name     varchar2 (30) not null
+, pkey_exclude   number not null
+);

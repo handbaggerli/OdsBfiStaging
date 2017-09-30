@@ -1,0 +1,10 @@
+Convert GUI from QT Creator to Python
+in cmd:
+in: C:\ProgramData\Anaconda3\Library\bin
+
+pyuic5.bat -x D:\GitRepos\OdsBfiStaging\GuiBuilder\OdsBfiStaging\mainwindow.ui -o  D:\GitRepos\OdsBfiStaging\Python\mainwindow_convert.txt
+pyuic5.bat -x D:\GitRepos\OdsBfiStaging\GuiBuilder\OdsBfiStaging\logindialog.ui -o  D:\GitRepos\OdsBfiStaging\Python\logindialog_convert.txt
+pyuic5.bat -x D:\GitRepos\OdsBfiStaging\GuiBuilder\OdsBfiStaging\correctiondialog.ui -o  D:\GitRepos\OdsBfiStaging\Python\correctiondialog_convert.txt
+
+
+

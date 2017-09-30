@@ -1,0 +1,7 @@
+begin
+ pck_warte_constraint_info.prc_define_index (p_table => 'opdetailkomp'
+     , p_column => 'itsopdetail'
+     , p_index_type => pck_warte_constraint_info.c_index_type_lix);
+end;
+/
+

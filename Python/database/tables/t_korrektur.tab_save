@@ -1,0 +1,24 @@
+drop table t_korrektur purge;
+
+create table t_korrektur
+(
+  korrektur_id        raw (16) not null
+, table_name          varchar2 (30) not null
+, korrektur_sequenz   number not null
+, korrektur_ladetyp   varchar2 (10) not null
+, script              clob
+, pkey_exclude        varchar2 (4000)
+, script_exclude      clob
+);
+
+begin
+  pck_warte_constraint_info.prc_define_delete ('t_korrektur');
+  pck_warte_constraint_info.prc_define_primary_key (p_table => 't_korrektur', p_column => 'korrektur_id');
+  pck_warte_constraint_info.prc_define_index (p_table => 't_korrektur', p_column => 'table_name, korrektur_sequenz', p_index_type => pck_warte_constraint_info.c_index_type_uix);
+end;
+/
+
+begin
+  pck_warte_constraint_info.prc_create_all ('t_korrektur');
+end;
+/

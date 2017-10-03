@@ -172,7 +172,8 @@ create or replace package body pck_init_verarbeitung is
            , script_exclude
       from t_korrektur
       where     1 = 1
-            and script_exclude is not null;
+            and script_exclude is not null
+             and length(script_exclude) > 5 ; ---> Not null scheint auf CLOB nicht immer korrekt zu funktionieren.
 
     type tab_exclude_script is table of c_exclude_script%rowtype;
 
@@ -271,7 +272,7 @@ create or replace package body pck_init_verarbeitung is
            , laden_bis
            , laden_scn
            , status
-      from chk200.t_odstables_refresh
+      from &&check_schema..t_odstables_refresh
       order by laden_bis desc;
 
     type tab_pps is table of c_pps%rowtype;
